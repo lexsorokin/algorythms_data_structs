@@ -1,0 +1,112 @@
+[tool.poetry]
+name = "team-tracker-back"
+version = "0.1.0"
+description = ""
+authors = ["oregu"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.10"
+boto3 = "^1.26.61"
+channels = "^4.0.0"
+Django = "^4.1.5"
+django-cors-headers = "^3.13.0"
+django-environ = "^0.9.0"
+django-rest-swagger = "^2.2.0"
+django-storages = "^1.13.2"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.2.2"
+drf-spectacular = "^0.25.1"
+Pillow = "^9.4.0"
+PyJWT = "^2.6.0"
+mysql-connector-python = "^8.0.32"
+pre-commit = "^3.0.3"
+django-redis = "^5.2.0"
+psycopg = "^3.1.8"
+isort = "^5.12.0"
+black = "^23.7.0"
+charset-normalizer = "^3.2.0"
+rq = "^1.15.1"
+pandas = "^2.1.0"
+openpyxl = "^3.1.2"
+faker = "^19.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 99
+target-version = ['py38', 'py39', 'py310', 'py311']
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+
+[tool.isort]
+force_single_line = false
+multi_line_output = 3
+profile = "black"
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 99
+src_paths = [
+    "apps",
+    "core",
+    "fixtures",
+]
+skip = [
+    "config",
+    "apps/**/migrations/0*",
+]
+
+
+[tool.docformatter]
+black = true
+non-strict = false
+non-cap = [
+	"docformatter",
+]
+
+
+[tool.ruff]
+line-length = 99
+select = [
+    "C4",
+    "E",
+    "F",
+    "T10",
+    "T20",
+    "Q",
+    "RET",
+]
+ignore = [
+    "E501",
+    "RET504",
+    "RET507",
+    "C408",
+    "C416",
+]
+exclude = [
+    ".git",
+    ".platform",
+    ".venv",
+    "config",
+    "apps/**/migrations/0*"
+]
+force-exclude = true
