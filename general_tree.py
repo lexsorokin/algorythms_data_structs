@@ -10,25 +10,26 @@ class TreeNode:
 
     def get_level(self):
         level = 0
-        p = self.parent 
-        while p: 
+        p = self.parent
+        while p:
             level += 1
             p = p.parent
 
         return level
 
     def print_tree(self, up_to=None):
-        
+
         spaces = " " * self.get_level() * 2
         prefix = spaces + "|__" if self.parent else ""
 
         print(prefix + self.data)
-        if self.children: # if parent has children
-            for child in self.children: 
-                if up_to and child.get_level() > up_to: 
+        if self.children:  # if parent has children
+            for child in self.children:
+                if up_to and child.get_level() > up_to:
                     continue
-                child.print_tree(up_to=up_to) # recursively call this function for every child that is being called 
-                
+                # recursively call this function for every child that is being called
+                child.print_tree(up_to=up_to)
+
 
 def build_product_tree():
     root = TreeNode(data="Electronics")
@@ -47,8 +48,7 @@ def build_product_tree():
     tv.add_child(TreeNode(data="Samsung"))
     tv.add_child(TreeNode(data="Sony"))
     tv.add_child(TreeNode(data="LG"))
-    
-    
+
     root.add_child(laptop)
     root.add_child(cellphone)
     root.add_child(tv)
