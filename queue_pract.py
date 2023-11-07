@@ -1,3 +1,5 @@
+from collections import deque
+
 # FIFO = first in first out 
 
 # list representation 
@@ -17,8 +19,6 @@ wmt_stock_price_queue.insert(0, 131.50)
 # Not recommended due to the dynamic nature of list 
 
 # deque representation
-
-from collections import deque
 
 q = deque()
 q.appendleft(5) # -> appending to the beginning of the list
