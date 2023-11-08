@@ -1,26 +1,36 @@
 from typing import List
 
+
 def removeDuplicates(nums: List[int]) -> int:
-    n = len(nums)-1    
-    insert_index = 1
+    n = len(nums)
+    insert_to_index = 1
+    has_duplicate = False
 
-    for i in range(1, len(nums)):
-        if nums[i - 1] != nums[i]:
-            nums[insert_index] = nums[i]
-            insert_index += 1
+    if len(nums) <= 2:
+        return len(nums)
 
-    return n+1, nums
-                
+    for i in range(1, n):
+        if nums[i] != nums[i-1]:
+            if has_duplicate:
+                nums[insert_to_index] = nums[i]
+                insert_to_index += 1
+                has_duplicate = False
+            else:
+                nums[insert_to_index] = nums[i]
+                insert_to_index += 1
+        elif not has_duplicate:
+            has_duplicate = True
+            nums[insert_to_index] = nums[i]
+            insert_to_index += 1
+
+    return insert_to_index
 
 
-a = [1,1,2]
-b = [0,0,1,1,1,2,2,3,3,4]
-c = [1,2]
+a = [1, 1, 1, 2, 2, 3]
+b = [0, 0, 1, 1, 1, 1, 2, 3, 3]  # -> [0,0,1,1,2,3,3]
+c = [1, 2, 2]
+d = [1,1,1]
 
-case_one = removeDuplicates(a)
-case_two = removeDuplicates(b)
-case_three = removeDuplicates(c)
+case = removeDuplicates(d)
 
-print(case_one)
-print(case_two)
-print(case_three)
+print(case)
