@@ -22,29 +22,39 @@ def binary_search(nums, elem_to_find):
     return -1
 
 
-def binary_search_recursive(nums, elem_to_find, left_index, right_index):
-    if right_index < left_index:
-        return -1
+def binary_search(lst, find):
 
-    mid_index = (left_index + right_index) // 2
-    if mid_index >= len(nums) or mid_index < 0: 
-        return -1
-    mid_number = nums[mid_index]
+    low = 0
+    high = len(lst) - 1
 
-    if mid_number == elem_to_find:
-        return f"Elem {mid_number} found at index {mid_index}"
+    while low <= high:
+        mid = (low + high) // 2
+        guess = lst[mid]
 
-    if mid_number < elem_to_find:
-        left_index = mid_index + 1
+        if guess == find:
+            return guess
 
+        if guess > find:
+            high = mid - 1
+
+        else:
+            low = mid + 1
+
+
+def recursive_binary_search(lst, find, low = None, high = None):
+    low = low
+    high = high
+    mid = (low + high) // 2
+    guess = lst[mid]
+
+    if guess == find:
+        return guess, mid
+    if guess > find:
+        return recursive_binary_search(lst, find, high = mid - 1, low=low)
     else:
-        right_index = mid_index - 1
-
-    return binary_search_recursive(nums=nums, elem_to_find=elem_to_find,
-                            left_index=left_index, right_index=right_index)
+        return recursive_binary_search(lst, find, low = mid + 1, high=high)
 
 
-lst = [1, 13, 15, 17, 35, 76, 135, 468]
+lst = [i for i in range(1, 100+1)]
 
-found = binary_search_recursive(nums=lst, elem_to_find=1, left_index=0, right_index=len(lst))
-print(found)
+print(recursive_binary_search(lst, 67, low=0, high=len(lst)-1))

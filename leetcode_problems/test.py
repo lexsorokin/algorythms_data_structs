@@ -20,6 +20,8 @@ def binary_search(lst, find):
         else: 
             low = mid + 1
 
+def recursive_binary_search()
+
 lst = [i for i in range(1, 100+1)]
 
 print(binary_search(lst, 67))
